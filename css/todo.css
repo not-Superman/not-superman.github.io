@@ -1,0 +1,13 @@
+﻿.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+input{
+    margin-bottom:15px;
+}
+h5{
+    margin:0px;
+}
+TEXTAREA {
+    width: 100%; 
+}  

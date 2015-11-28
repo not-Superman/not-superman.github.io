@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <title>Аквалайзер</title>
+    <link href="css/todo.css" rel="stylesheet" />
+    <script src="scripts/frameworks/angular.min.js"></script>
+    <script src="scripts/frameworks/jquery-1.11.1.min.js"></script>
+    <script src="scripts/todo.js"></script>
+    <script type="text/javascript" src="scripts/frameworks/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="scripts/frameworks/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/frameworks/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+</head>
+<body>
+    
+    <div ng-controller="TodoCtrl">
+        <p style="margin:0px" class="alert alert-info"> <b style="font-size:x-large">Список дел</b> (осталось {{remaining()}} из {{todos.length}})</spanclass="alert></p>
+
+        <ul class="unstyled well">
+            <li ng-repeat="todo in todos">
+                <input type="checkbox" ng-model="todo.done">
+                <span class="done-{{todo.done}}">
+                    {{todo.text}}
+                    <h5 class="done-{{todo.done}}">{{todo.time}} <button class="btn-xs btn-default btn-del" ng-click="removeContact">Удалить</button></h5>
+                </span>
+
+            </li>
+        </ul>
+
+        <form ng-submit="addTodo()">
+            <textarea ng-model="todoText" placeholder="Впишите новое дело"> </textarea>
+            <label>
+                Крайний срок
+                <input type="date" ng-model="todoTime" />
+            </label>
+            <input class="btn btn-primary" type="submit" value="Добавить">
+            <i class="icon-search"></i>
+        </form>
+
+        <div class="form-group">
+            <div class="input-group date" id="datetimepicker3">
+                <input type="text" class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button id="setMinDate" class="btn btn-default" title="Установить минимальную дату" >setMinDate</button>
+            <button id="setMaxDate" class="btn btn-default" title="Установить максимальную дату">setMaxDate</button>
+            <button id="show" class="btn btn-default" title="Показать календарь">Show</button>
+            <button id="hide" class="btn btn-default" title="Скрыть календарь">Hide</button>
+            <button id="disable" class="btn btn-default" title="Перевести в неактивное состояние поле ввода">Disable</button>
+            <button id="enable" class="btn btn-default" title="Перевести в активное состояние поле ввода">Enable</button>
+            <button id="setDate" class="btn btn-default" title="Установить заданную дату">setDate</button>
+            <button id="getDate" class="btn btn-default" title="Получить дату">getDate</button>
+        </div>
+
+        <script type="text/javascript">
+  $(function () {
+    $('#datetimepicker3').datetimepicker({language: 'ru'});
+    $("#setMinDate").click(function () {
+      $('#datetimepicker3').data("DateTimePicker").setMinDate(new Date("01.01.2015"));
+    });
+    $("#setMaxDate").click(function () {
+      $('#datetimepicker3').data("DateTimePicker").setMaxDate(new Date("01.01.2016"));
+    });
+    $("#show").click(function () {
+      $('#datetimepicker3').data("DateTimePicker").show();
+    });
+    $("#hide").click(function () {
+      $('#datetimepicker3').data("DateTimePicker").hide();
+    });
+    $("#disable").click(function () {
+      $('#datetimepicker3').data("DateTimePicker").disable();
+    });
+    $("#enable").click(function () {
+      $('#datetimepicker3').data("DateTimePicker").enable();
+    });
+    $("#setDate").click(function () {
+      $('#datetimepicker3').data("DateTimePicker").setDate("01/09/2015");
+    });
+    $("#getDate").click(function () {
+      alert($('#datetimepicker3').data("DateTimePicker").getDate());
+    });
+  });
+        </script>
+
+        
+
+<script src="cordova.js"></script>
+<script src="scripts/platformOverrides.js"></script>
+<script src="scripts/index.js"></script>
+</body>
+</html>
